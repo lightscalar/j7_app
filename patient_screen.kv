@@ -14,11 +14,11 @@
         self.description.focus = True
     BoxLayout:
         orientation: 'vertical'
-        padding: 20
-        spacing: 20
+        padding: dp(10)
+        spacing: dp(10)
         Label:
             size_hint: None, None
-            size: 500, 50
+            size: dp(500), dp(30)
             text: app.patient_hid
             text_size: self.size
             halign: 'left'
@@ -26,10 +26,10 @@
             font_size: 50
         BoxLayout:
             size_hint: None, None
-            spacing: 20
+            spacing: dp(20)
             Button:
                 size_hint: None, None
-                size: 280, 100
+                size: dp(200), dp(50)
                 background_normal: ''
                 background_color: dark_blue
                 text: 'All Patients'
@@ -37,7 +37,7 @@
                 bold: True
             Button:
                 size_hint: None, None
-                size: 280, 100
+                size: dp(200), dp(50)
                 text: '+ New Scan'
                 background_normal: ''
                 background_color: yellow
@@ -51,7 +51,7 @@
             height: 100
             TextInput:
                 id: description
-                padding: 20
+                padding: dp(10)
                 size_hint: 0.6, None
                 hint_text: 'Description'
                 multiline: False
@@ -64,6 +64,7 @@
                     app.update_patient(pkg)
             TextInput:
                 id: gender
+                padding: dp(10)
                 size_hint: 0.2, None
                 hint_text: 'Gender'
                 multiline: False
@@ -77,6 +78,7 @@
             TextInput:
                 id: age
                 size_hint: 0.2, None
+                padding: dp(10)
                 hint_text: 'Age'
                 multiline: False
                 write_tab: False
@@ -88,7 +90,7 @@
                     app.update_patient(pkg)
         Label:
             size_hint: None, None
-            width: 300
+            width: dp(300)
             text: 'Available Scans' if len(app.scans)>0 else 'No Scan Available'
             text_size: self.size
             halign: 'left'

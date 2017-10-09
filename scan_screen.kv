@@ -14,11 +14,11 @@
     gcs: gcs
     BoxLayout:
         orientation: 'vertical'
-        padding: 20
-        spacing: 20
+        padding: dp(10)
+        spacing: dp(10)
         Label:
             size_hint: None, None
-            size: 500, 50
+            size: dp(500), dp(30)
             text: app.patient_hid
             text_size: self.size
             halign: 'left'
@@ -26,7 +26,7 @@
             font_size: 50
         BoxLayout:
             size_hint: None, None
-            spacing: 20
+            spacing: dp(10)
             Button:
                 size_hint: None, None
                 size: 280, 100
@@ -36,12 +36,12 @@
                 on_press: app.root.current = 'patient_screen'
                 bold: True
         BoxLayout:
-            spacing: 20
+            spacing: dp(10)
             size_hint: 1, None
-            height: 100
+            height: dp(60)
             TextInput:
                 id: notes
-                padding: 20
+                padding: dp(10)
                 size_hint: 0.6, None
                 hint_text: 'Notes'
                 multiline: False
@@ -53,6 +53,7 @@
                     app.update_scan(package)
             TextInput:
                 id: gcs
+                padding: dp(10)
                 size_hint: 0.4, None
                 hint_text: 'GCS'
                 multiline: False
@@ -63,12 +64,12 @@
                     package['gcs'] = gcs.text
                     app.update_scan(package)
         BoxLayout:
-            padding: 100
+            padding: dp(80)
             Button:
                 id: scan_start_button
                 text: 'Start Scan'
                 bold: True
-                font_size: 100
+                font_size: dp(40)
                 background_normal: ''
                 background_down: 'images/button_down@2x.png'
                 background_color: yellow
