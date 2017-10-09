@@ -1,0 +1,70 @@
+#:kivy 1.10.0
+
+
+<PatientScreen@Screen>:
+    name: 'patient_screen'
+    description: description
+    gender: gender
+    on_enter:
+        self.description.text = app.patient['description']
+        self.gender.text = app.patient['gender']
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        Label:
+            size_hint: None, None
+            size: 500, 50
+            text: app.patient_hid
+            text_size: self.size
+            halign: 'left'
+            bold: True
+            font_size: 50
+        BoxLayout:
+            size_hint: None, None
+            spacing: 20
+            Button:
+                size_hint: None, None
+                size: 280, 100
+                background_normal: ''
+                background_color: dark_blue
+                text: 'All Patients'
+                on_press: app.root.current = 'home_screen'
+                bold: True
+            Button:
+                size_hint: None, None
+                size: 280, 100
+                text: '+ New Scan'
+                background_normal: ''
+                background_color: dark_gray
+                bold: True
+        BoxLayout:
+            spacing: 20
+            size_hint: 1, None
+            height: 100
+            TextInput:
+                id: description
+                padding: 20
+                size_hint: 0.6, None
+                hint_text: 'Description'
+                multiline: False
+                write_tab: False
+            TextInput:
+                id: gender
+                size_hint: 0.4, None
+                hint_text: 'Gender'
+                multiline: False
+                write_tab: False
+        ScanList:
+            id: scan_list
+            viewclass: 'ScanView'
+            size_hint: 1, 0.90
+            RecycleBoxLayout:
+                spacing: 25
+                size_hint: 1, 1
+                default_size: None, dp(56)
+                default_size_hint: 1.0, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+
