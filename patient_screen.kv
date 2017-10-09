@@ -6,9 +6,12 @@
     scans: scan_list
     description: description
     gender: gender
+    age: age
     on_enter:
         self.description.text = app.patient['description']
         self.gender.text = app.patient['gender']
+        self.age.text = app.patient['age']
+        self.description.focus = True
     BoxLayout:
         orientation: 'vertical'
         padding: 20
@@ -56,17 +59,31 @@
                 on_text_validate:
                     pkg = {}
                     pkg['description'] = description.text
+                    pkg['age'] = age.text
                     pkg['gender'] = gender.text
                     app.update_patient(pkg)
             TextInput:
                 id: gender
-                size_hint: 0.4, None
+                size_hint: 0.2, None
                 hint_text: 'Gender'
                 multiline: False
                 write_tab: False
                 on_text_validate:
                     pkg = {}
                     pkg['description'] = description.text
+                    pkg['age'] = age.text
+                    pkg['gender'] = gender.text
+                    app.update_patient(pkg)
+            TextInput:
+                id: age
+                size_hint: 0.2, None
+                hint_text: 'Age'
+                multiline: False
+                write_tab: False
+                on_text_validate:
+                    pkg = {}
+                    pkg['description'] = description.text
+                    pkg['age'] = age.text
                     pkg['gender'] = gender.text
                     app.update_patient(pkg)
         Label:

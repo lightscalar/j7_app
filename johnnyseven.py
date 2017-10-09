@@ -56,7 +56,8 @@ class JohnnySevenApp(App):
         print('Creating a patient.')
         patient = {'hid': sixer()}
         patient['description'] = ''
-        patient['gender'] = 'Male'
+        patient['age'] = ''
+        patient['gender'] = ''
         self.patient = db.insert('patient', patient)
         self.root.home.patients.refresh()
         self.patient_hid = self.patient['hid']
@@ -73,7 +74,7 @@ class JohnnySevenApp(App):
         self.patients = db.all('patients')
 
     def delete_scan(self, scan_id):
-        # Delete a patient.
+        # Delete a scan.
         db.delete(scan_id)
         self.root.patient.scans.refresh()
         self.scans = db.find_where('scans', 'patient_id', self.patient['_id'])
