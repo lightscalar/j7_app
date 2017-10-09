@@ -2,11 +2,13 @@
 #: include home_screen.kv
 #: include patient_screen.kv
 #: include scan_screen.kv
+#: include summary_screen.kv
 #: include views.kv
 #: import ScreenManager kivy.uix.screenmanager.ScreenManager
 #: import FallOutTransition kivy.uix.screenmanager.FallOutTransition
 #:set dark_blue (0.188, 0.333, 0.502, 1)
 #:set dark_gray (0.188, 0.188, 0.188, 1)
+#:set yellow (0.992, 0.725, 0.075, 1)
 
 
 ScreenManager:
@@ -26,5 +28,7 @@ ScreenManager:
         id: patient_screen
     ScanScreen:
         id: scan_screen
+    SummaryScreen:
+        id: summary_screen
 
 

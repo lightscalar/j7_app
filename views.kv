@@ -63,22 +63,11 @@
         size_hint: 1, 1
         background_normal: ''
         background_color: (0.4, 0.4, 0.4, 1)
-        text: root.hid
+        text: root.createdAt
         underline: True
         bold: True
         on_press:
-            app.set_patient(root._id)
-            app.root.current = 'patient_screen'
-    Label:
-        bcolor: 0.4, 0.4, 0.4, 1
-        canvas.before:
-            Color:
-                rgba: self.bcolor
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        size_hint: 1, 1
-        text: root.createdAt
+            app.root.current = 'scan_screen'
     Button:
         background_normal: ''
         background_color: (0.4, 0.4, 0.4, 1)
@@ -88,15 +77,4 @@
         text: 'DELETE'
         bold: True
         on_press:
-            app.delete_patient(root._id)
-    Button:
-        background_normal: ''
-        background_color: (0.4, 0.4, 0.4, 1)
-        color: (1, 1, 1, 1)
-        underline: True
-        size_hint: 1, 1
-        text: 'Export Data'
-        bold: True
-        on_press:
-            app.save_data(root._id)
-            Factory.ExportPopup().open()
+            app.delete_scan(root._id)

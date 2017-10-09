@@ -1,4 +1,82 @@
 #:kivy 1.10.0
+# import Clock kivy.clock.Clock
 
 <ScanScreen@Screen>:
     name: 'scan_screen'
+    scan_start_button: scan_start_button
+    notes: notes
+    gcs: gcs
+    on_enter:
+        scan_start_button.text = 'Start Scan'
+        self.notes.text = ''
+        self.gcs.text = ''
+    notes: notes
+    gcs: gcs
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        Label:
+            size_hint: None, None
+            size: 500, 50
+            text: app.patient_hid
+            text_size: self.size
+            halign: 'left'
+            bold: True
+            font_size: 50
+        BoxLayout:
+            size_hint: None, None
+            spacing: 20
+            Button:
+                size_hint: None, None
+                size: 280, 100
+                background_normal: ''
+                background_color: dark_blue
+                text: app.patient_hid
+                on_press: app.root.current = 'patient_screen'
+                bold: True
+        BoxLayout:
+            spacing: 20
+            size_hint: 1, None
+            height: 100
+            TextInput:
+                id: notes
+                padding: 20
+                size_hint: 0.6, None
+                hint_text: 'Notes'
+                multiline: False
+                write_tab: False
+                on_text_validate:
+                    package = {}
+                    package['notes'] = notes.text
+                    package['gcs'] = gcs.text
+                    app.update_scan(package)
+            TextInput:
+                id: gcs
+                size_hint: 0.4, None
+                hint_text: 'GCS'
+                multiline: False
+                write_tab: False
+                on_text_validate:
+                    package = {}
+                    package['notes'] = notes.text
+                    package['gcs'] = gcs.text
+                    app.update_scan(package)
+        BoxLayout:
+            padding: 100
+            Button:
+                id: scan_start_button
+                text: 'Start Scan'
+                bold: True
+                font_size: 100
+                background_normal: ''
+                background_down: 'images/button_down@2x.png'
+                background_color: yellow
+                color: 0,0,0,1
+                on_press:
+                    package = {}
+                    package['notes'] = notes.text
+                    package['gcs'] = gcs.text
+                    app.update_scan(package)
+                    self.text = 'Hold Steady'
+                    app.schedule_scan()

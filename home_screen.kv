@@ -19,13 +19,21 @@
                 font_size: 50
         BoxLayout:
             size_hint: None, None
-            size: 280, 100
+            size: 290, 100
             Button:
                 background_normal: ''
-                background_color: dark_blue
+                background_color: yellow
+                color: 0, 0, 0, 1
                 text: '+ Add New Patient'
                 on_press: app.create_patient()
                 bold: True
+        Label:
+            size_hint: None, None
+            width: 400
+            text: 'Available Patients' if len(app.patients)>0 else 'No patients... Add one!'
+            text_size: self.size
+            halign: 'left'
+            bold: True
         PatientList:
             id: patient_list
             viewclass: 'PatientView'
